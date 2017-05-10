@@ -1,0 +1,27 @@
+@mixin main-tile-skew-area($bottom, $background, $transform) {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: $bottom;
+  left:0 ;
+  background: $background;
+  width: 100%;
+  height: 200px;
+  transform: $transform;
+  z-index: -1;
+}
+
+
+@mixin speech-balloon-circle($bottom, $left) {
+  content: "";
+  display: block;
+  position:absolute;
+  bottom: $bottom;
+  left: $left;
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  background:  white;
+  border: 4px solid hsla(48, 100%, 50%, 1);
+  box-shadow: -10px 10px 25px -8px black;
+}

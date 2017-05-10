@@ -1,0 +1,7 @@
+@keyframes down-up {
+  0% {bottom: 130px;  }
+  25% {bottom: 60px; color: white; }
+  50% {bottom: 1px; color: white;}
+  75% {bottom: 60px; color: white;}
+  100% {bottom: 130px; color: orange; }
+}

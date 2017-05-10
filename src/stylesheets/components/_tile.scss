@@ -1,0 +1,48 @@
+.main-tile {
+  position: relative;
+  display: flex;
+  height: calc(100vh - 80px);
+  flex-direction: column;
+  background: linear-gradient(to top right, hsla(95, 100%, 80%, 0.3), white);
+  z-index: 999;
+  overflow: hidden;
+
+  &.skew-areas:before {
+    @include main-tile-skew-area(-180px, hsla(38, 95%, 50%, 0.4 ), skewY(15deg));
+  }
+
+  &.skew-areas:after {
+    @include main-tile-skew-area(-340px, hsla(48, 100%, 50%, 0.5), skewY(-22deg));
+  }
+}
+
+
+/*
+.people-2g {
+color: mix(yellow, orange, 50%);
+margin: 10% 0% 20% 20%;
+}
+
+.people-3g {
+color: hsla(235, 100%, 80%, 0.9);
+margin: 10% 0% 30% 30%;
+}
+*/
+/*
+.tile {
+&:nth-child(1) {
+//background-color: (95, 100%, 80%, 0.5);
+//background-color: hsla(0,0,100%,1);
+color: black;
+height: calc(100vh - 80px);
+}
+&:nth-child(2) {
+background-color: hsla(75, 100%, 80%, 0.7);
+height: 100vh;
+}
+&:nth-child(3) {
+background-color: hsla(55, 100%, 80%, 0.9);
+height: 100vh;
+}
+}
+*/
