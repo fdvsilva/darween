@@ -1,0 +1,14 @@
+.board {
+  display: flex;
+  background: linear-gradient(to top right, hsla(95, 100%, 80%, 0.3), white);
+  height: calc(100vh - 80px);
+  .board-players {
+    //border: 1px solid pink;
+    flex-basis: 65%;
+  }
+
+  .board-messages {
+    flex-basis: 35%;
+    //border: 1px solid yellow;
+  }
+}
