@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
+import Face from './face.js';
 
 
 const FacesGrid = (props) => {
@@ -11,7 +12,7 @@ const FacesGrid = (props) => {
         var faceStyles = {
           backgroundImage: `url('/assets/images/${facePicsNames[i][j]}')`
         };
-        rowFaces.push(<div className="face" style={faceStyles} key={facePicsNames[i][j] + i + j}></div>);
+        rowFaces.push(<Face faceStyles={faceStyles} key={facePicsNames[i][j] + i + j} />);
       }
       rows.push(<div className="row" key={i}> {rowFaces} </div>);
       rowFaces = [];

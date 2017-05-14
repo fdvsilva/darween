@@ -5,6 +5,11 @@ const AccordionMessages = () => {
     return (
       <div className="accordion">
         <div className="label">
+          <FontAwesome className="label-icons left" name='bell-o' />
+          Notifications
+          <FontAwesome className="label-icons right" name='caret-down' />
+        </div>
+        <div className="label">
             <FontAwesome className="label-icons left" name='commenting-o' />
           Topics
           <FontAwesome className="label-icons right" name='caret-down' />
@@ -83,11 +88,7 @@ const AccordionMessages = () => {
           Downvotes
           <FontAwesome className="label-icons right" name='caret-down' />
         </div>
-        <div className="label">
-          <FontAwesome className="label-icons left" name='bell-o' />
-          Notifications
-          <FontAwesome className="label-icons right" name='caret-down' />
-        </div>
+
       </div>
     );
 }
