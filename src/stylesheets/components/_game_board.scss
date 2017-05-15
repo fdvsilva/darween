@@ -1,14 +1,31 @@
 .board {
   display: flex;
   background: linear-gradient(to top right, hsla(95, 100%, 80%, 0.3), white);
-  height: calc(100vh - 80px);
+  height: calc(100vh - 78px);
   position: relative;
-  .board-players {
+
+  .board-misc {
     //border: 1px solid pink;
     flex-basis: 65%;
+    .board-players {
+      height: calc(100vh - 220px);
+      margin-top: 0px;
+      //width: 100%;
+      flex-basis: 75%;
+      display: flex;
+      //border: 1px solid grey;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      .board-player {
+        //margin-top: 10px;
+        //border: 1px solid blue;
+        flex-basis: 21%;
+        //background: blue;
+      }
+    }
   }
-
-  .board-messages {
+  .board-menu {
     flex-basis: 35%;
     //border: 1px solid yellow;
   }
