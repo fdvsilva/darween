@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Sidebar from '../src/components/sidebar.js'
 import Header from '../src/components/header.js';
 //import Tile from '../src/components/tile.js';
 import Footer from '../src/components/footer.js';
@@ -9,7 +10,8 @@ import GameBoard from '../src/components/game_board.js';
 const App = () => {
   return (
     <div>
-      <Header />
+      <Sidebar />
+      <Header loggedIn="true"/>
       <GameBoard />
     </div>
   );

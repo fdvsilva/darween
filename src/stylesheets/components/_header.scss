@@ -11,39 +11,7 @@
   //justify-content: center;
   z-index: 1;
   .left-aligned-items {
-    .title-container {
-      -webkit-perspective: 150px; /* Chrome, Safari, Opera  */
-      perspective: 150px;
-      .title {
-        transform: rotateY(40deg);
-
-        //font-family: 'Lobster', cursive;
-        font-family: 'Monoton', cursive;
-        //font-family: 'Wendy One', sans-serif;
-        letter-spacing: 0px;
-        text-shadow: 5px 5px 1px hsla(0,0,0,0.7);
-        /*
-        height: 50px;
-        width: 50px;
-        */
-        //color:black;
-        color: hsla(48, 80%, 50%, 1);
-
-        margin-left: 40px;
-        /*
-        border: 2px solid hsla(48, 80%, 50%, 1);
-        border-radius: 100px;
-        box-shadow: -5px -5px 5px 3px hsla(0,0,0,0.3);
-        */
-
-        .logo-text {
-          font-size: 22px;
-          color: hsla(48, 80%, 50%, 1);
-
-
-        }
-      }
-    }
+    
   }
 
   .right-aligned-items {
@@ -71,7 +39,7 @@
       font-size: 17px;
     }
 
-    
+
   }
 
 

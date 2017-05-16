@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import Logo from './logo.js';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className="header">
       {/* <h1> Header </h1> */}
       {/*<h2 className="title"> Darween </h2>*/}
-      <div className="left-aligned-items">
-      <div className="title-container">
-        <div className="title">
-          <FontAwesome className="" name='comments-o' size='2x' />
-          <span className="logo-text">darween</span>
-        </div>
-      </div>
-      </div>
+      { !props.loggedIn && <Logo /> }
       <div className="right-aligned-items">
         <div className="">
           <FontAwesome className="icons mail" name='envelope'  />
