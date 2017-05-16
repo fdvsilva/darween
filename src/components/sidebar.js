@@ -1,6 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+
 import Logo from './logo.js';
+import GenericDropdown from './generic_dropdown.js';
 
 const Sidebar = () => {
   return (
@@ -32,22 +34,22 @@ const Sidebar = () => {
           <FontAwesome className="sidebar-icon-left" name='book'/>
           Skip Reading
         </li>
-        <li className="expand-dropdown">
+        <li className="dropdownable">
           <FontAwesome className="sidebar-icon-left" name='thumbs-o-down'/>
           Downvote
           <FontAwesome className="sidebar-icon-right" name='caret-right'/>
-          <div className="dropdown">
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> Blue </p>
+          <GenericDropdown top="-4px" right="-181px">
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> Blue </p>
             <hr />
-            <p>  <FontAwesome className="dropdown-icon" name='circle'/> No Downvote </p>
-          </div>
+            <p>  <FontAwesome className="dropdown-icon-relative" name='circle'/> No Downvote </p>
+          </GenericDropdown>
         </li>
 
 
