@@ -1,0 +1,127 @@
+.modal-wrapper {
+  top: 0;
+  left: 0;
+  @include backdrop(9999);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+
+  .modal {
+    border-radius: 10px;
+    height: 450px;
+    width: 600px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 50px;
+    overflow: hidden;
+    color: white;
+    .modal-body {
+      //border: 1px solid pink;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      color: hsla(0, 0%, 31%, 1);
+      height: 310px;
+      p {
+        border-radius: 3px;
+        color: hsla(0, 0%, 51%, 1);
+        font-size: 13px;
+        border: 1px solid hsla(0, 0%, 65%, 0.2);
+        font-weight: normal;
+        text-align: left;
+        width: 90%;
+        padding: 7px;
+        background: hsla(39, 85%, 95%, 0.3);
+        .info-icon {
+          position: absolute;
+          left: 7px;
+          font-size: 15px;
+          //padding-right: 10px;
+          color: hsla(195, 100%, 50%,1);
+        }
+      }
+      .info-message {
+          padding-left: 25px;
+      }
+      .letters-countdown {
+        width: 10%;
+        align-self: flex-end;
+        margin-right: 30px;
+      }
+      textarea {
+        border: 1px solid pink;
+        padding: 15px;
+        font-size: 14px;
+        width: 90%;
+        height: 55%;
+        border: 1px solid hsla(0, 0%, 65%, 1);
+        outline: none;
+        resize: none;
+        border-radius: 2px;
+
+        box-shadow: 0px 3px 3px -2px hsla(0, 0%, 0%, 0.3);
+      }
+    }
+    header,footer {
+      text-align: center;
+
+      background: hsla(0, 0%, 95%, 1);
+
+      height: 70px;
+      color: hsla(0, 0%, 31%, 1);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-bottom: 1px solid hsla(0, 0%, 65%, 0.5);
+      .header-icon {
+        padding-right: 10px;
+          padding-left: 10px;
+        color: hsla(48, 100%, 50%, 0.8);
+        //text-shadow: 1px 1px 0px hsla(0,0,100%,0.8);
+      }
+      p {
+        //border: 1px solid pink;
+        font-size: 22px;
+        text-align: left;
+
+        &:last-child {
+          //border: 1px solid hsla(48, 100%, 50%, 1);
+          flex-grow: 1;
+          text-align: right;
+          color: hsla(0, 0%, 61%, 1);
+        }
+      }
+
+    }
+    footer {
+      display: flex;
+      padding-right: 30px;
+      border-top: 1px solid hsla(0, 0%, 65%, 0.5);
+      align-items: center;
+      justify-content: flex-end;
+      //font-weight: normal;
+      font-size: 13px;
+      a {
+        //border: 1px solid hsla(0, 0%, 97%, 1);
+        padding: 7px;
+        width: 100px;
+        margin-left: 5px;
+        color: white;
+        background: hsla(195, 100%, 50%,1);
+        cursor: pointer;
+        &:hover {
+          background: hsla(195, 60%, 50%,1);
+        }
+        &:active {
+          box-shadow: 0px 3px 5px -2px hsla(0, 0%, 0%, 0.8);
+        }
+      }
+      //height: 80px;
+    }
+  }
+}
