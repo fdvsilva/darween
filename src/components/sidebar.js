@@ -37,7 +37,7 @@ class Sidebar extends Component {
             <li onClick={() => this.setState({ modal: true})}>
               <FontAwesome className="sidebar-icon-left" name='commenting-o'/>
               Add POV
-              <ModalWrapper show={this.state.modal}/>
+              {/*<ModalWrapper show={this.state.modal}/> */}
             </li>
             <li>
               <FontAwesome className="sidebar-icon-left" name='book'/>
