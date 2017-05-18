@@ -50,8 +50,8 @@ const ModalWrapper = (props) => {
     }
     </div>
     <footer className={classnames({'center-buttons': props.adjustForContactModal})}>
-    <a> {props.okText} </a>
-    <a>Close</a>
+      <a> {props.okText} </a>
+      <a>Close</a>
     </footer>
     </div>
 

@@ -1,5 +1,14 @@
+.toggle {
+  display: none;
+}
+
+.toggle:checked + .news-feed {
+  height: 200px;
+}
+
 .news-feed {
-  position: relative;
+  position: absolute;
+  z-index:2;
   //position: absolute;
   //bottom: -2px;
   //left: 1px;
@@ -32,46 +41,11 @@
     z-index: 2;
     font-size: 20px;
     color: hsla(48, 80%, 50%, 1);
+    cursor: pointer;
   }
-  .news-entry {
-    //border: 1px solid pink;
-    padding: 4px;
-    text-align: left;
-    padding-left: 110px;
-    padding-right: 110px;
-    //width: 75%;
-    margin: 0;
-    font-weight: normal;
-    letter-spacing: 0px;
-    line-height: 10px;
 
-    p {
-        margin: 0;
-        padding: 5px;
-        display: inline-block;
-        //border: 1px solid yellow;
-      }
-      &:nth-child(odd) {
-        background: hsla(0, 0%, 89%, 0.3);
-        box-shadow:  30px 0px 0 hsla(48, 100%, 50%, 0.8) inset;
-      }
-      &:nth-child(even) {
-        background: hsla(0, 0%, 94%, 0.2);
-        box-shadow:  30px 0px 0 hsla(48, 100%, 50%, 0.8) inset;
-      }
-    }
 
-    .time {
-      float: right;
-      line-height: 20px;
-      color: hsla(0, 0%, 31%, 0.5);
-      //padding-left: 100px;
-      //text-align: right;
-    }
 
-  .news-icon {
-    //display: inline-block;
-    padding-right: 10px;
-    color: hsla(48, 80%, 50%, 1);
-  }
+
+
 }

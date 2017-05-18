@@ -20,21 +20,17 @@ const Header = (props) => {
               <GenericDropdown top="25px" left="0" width="340px">
                 <p style={{paddingLeft: "30px"}}>
                   <FontAwesome className="dropdown-icon-absolute" name='info-circle'/>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation
+                  Notification Title #1
                 </p>
                 <hr />
                   <p style={{paddingLeft: "30px"}}>
                     <FontAwesome className="dropdown-icon-absolute" name='info-circle'/>
-                    Lorem ipsum dolor sit amet, consectetur.
+                    Notification Title #2
                   </p>
                   <hr />
                     <p style={{paddingLeft: "30px"}}>
                       <FontAwesome className="dropdown-icon-absolute" name='info-circle'/>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                      Ut enim ad minim veniam, quis nostrud exercitation
+                      Notification Title #3
                     </p>
               </GenericDropdown>
           </div>

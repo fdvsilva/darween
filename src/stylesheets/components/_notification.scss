@@ -1,0 +1,50 @@
+.notification {
+  padding: 10px 0px;
+  box-shadow: -30px 0px 0 hsla(48, 100%, 50%, 1) inset;
+  text-align: right;
+  padding-right: 40px;
+  color: hsla(0, 0%, 31%, 1);
+  font-size: 12px;
+  background: hsla(0, 0%, 92%, 0.2);
+  &.room-for-caret {
+    padding-right: 60px;
+  }
+  &:nth-child(even) {
+    background: white;
+  }
+  .left-aligned-icon-notification {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    font-size:15px;
+    color: hsla(195, 100%, 50%,1);
+  }
+  .right-aligned-icon-notification {
+    font-size: 10px;
+    position: absolute;
+    right: 40px;
+    top: 12px;
+    cursor: pointer;
+  }
+  p {
+    padding: 10px 55px 15px 40px;
+    text-align: left;
+    //border: 1px solid green;
+    font-weight: normal;
+    letter-spacing: 0px;
+    line-height: 20px;
+
+  }
+  .toggle {
+    display: none;
+  }
+
+  .toggle + p {
+    display: none;
+
+  }
+
+  .toggle:checked + p {
+    display: block;
+  }
+}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+var classNames = require('classnames');
 
 import FacesGrid from './faces_grid.js';
 import ScrollDownMarker from './scroll_down_marker.js';
 import SpeechBalloon from './speech_balloon.js';
 
-var classNames = require('classnames');
+
 
 const Tile = (props) => {
   let facePicsNames = [

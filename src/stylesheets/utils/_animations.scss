@@ -5,3 +5,9 @@
   75% {bottom: 60px; color: white;}
   100% {bottom: 130px; color: orange; }
 }
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
