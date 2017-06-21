@@ -1,2 +1,5 @@
 node_modules/
 *~
+mongodb-data/
+dump.rdb
+.DS_Store*

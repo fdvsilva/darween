@@ -22,6 +22,18 @@ module.exports = {
   },
   module: {
     loaders: [
+      /*
+      // Linter
+      {
+          test: /\.js$/,
+          enforce: 'pre',
+
+          loader: 'eslint-loader',
+          options: {
+            emitWarning: true,
+          },
+      },
+      */
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
@@ -43,6 +55,15 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    overlay: {
+        errors: true,
+        warnings: true,
+      },
+		proxy: {
+			"/api": "http://localhost:3001"
+		}
+	},
   plugins:  [
     HtmlWebpackPluginConfig,
     new ExtractTextPlugin("app.css")

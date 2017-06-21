@@ -1,15 +1,30 @@
 import React, {Component} from 'react';
 import FontAwesome from 'react-fontawesome';
+import {PropTypes} from 'prop-types';
 
 import Logo from './logo.js';
 import GenericDropdown from './generic_dropdown.js';
-import ModalWrapper from './modal_wrapper.js';
+//import ModalWrapper from './modal_wrapper.js';
 
 class Sidebar extends Component {
 
   constructor(props) {
     super(props);
     this.state = {modal: false};
+    this.joinBoard = this.joinBoard.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.socket.on('request:topic', (message => {
+      console.log(message);
+    }));
+    this.props.socket.on('test', (message => {
+      console.log("TEST: " + message);
+    }));
+  }
+
+  joinBoard () {
+    this.props.socket.emit("join", "A new player has joined");
   }
 
 
@@ -24,7 +39,7 @@ class Sidebar extends Component {
           </label>
           <ul className="menu">
             <li> <Logo /> </li>
-            <li >
+            <li onClick = {this.joinBoard}>
               <FontAwesome className="sidebar-icon-left" name='circle'/>
               Join Circle
             </li>
@@ -67,6 +82,10 @@ class Sidebar extends Component {
       </div>
     );
   }
+}
+
+Sidebar.propTypes = {
+  socket: PropTypes.object
 }
 
 export default Sidebar;
