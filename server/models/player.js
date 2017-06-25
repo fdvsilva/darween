@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+var Schema = mongoose.Schema;
 
 var PlayerSchema = mongoose.Schema({
   socketId: {
     type: String
   },
-  /*
   boardId: {
-    type: Number
+    type: Schema.Types.ObjectId,
+    ref: 'Board'
   },
-  */
   name : {
     type: String
   }

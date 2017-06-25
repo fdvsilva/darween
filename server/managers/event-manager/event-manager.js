@@ -4,18 +4,26 @@ const taskConstructor = require('../task-manager/task-constructor.js');
 const eventManager = (io) => {
 
   io.on('connection', (socket) => {
+    //console.log(io);
     console.log("New User Connected");
+      taskManager.enqueueTask(taskConstructor.createConnectTask(socket.id), 0);
 
     socket.on("join", (message) => {
       taskManager.enqueueTask(taskConstructor.createJoinTask(socket.id), 0);
     });
 
+    socket.on("join:channel", (channel) => {
+      console.log(`User ${socket.id} joined room ${channel}`)
+      socket.join(channel);
+    });
+
     socket.on("leave", (message) => {
-      console.log(`${socket.id}: ${message}`);
+      taskManager.enqueueTask(taskConstructor.createLeaveTask(socket.id), 0);
     });
 
     socket.on('disconnect', () => {
       console.log(`${socket.id}: User was disconnected`);
+      taskManager.enqueueTask(taskConstructor.createDisconnectTask(socket.id), 0);
     });
   })
 

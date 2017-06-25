@@ -12,21 +12,33 @@ class Sidebar extends Component {
     super(props);
     this.state = {modal: false};
     this.joinBoard = this.joinBoard.bind(this);
+    this.leaveBoard = this.leaveBoard.bind(this);
   }
 
   componentDidMount() {
-    this.props.socket.on('request:topic', (message => {
-      console.log(message);
+    this.props.socket.on('join:channel:request', (channel => {
+      console.log("join:channel:request");
+      console.log(channel);
+      this.props.socket.emit("join:channel", channel);
     }));
+
+    this.props.socket.on('leave:channel', (channel => {
+      console.log("LEFT CHANNEL");
+    }));
+
     this.props.socket.on('test', (message => {
       console.log("TEST: " + message);
     }));
+
   }
 
   joinBoard () {
     this.props.socket.emit("join", "A new player has joined");
   }
 
+  leaveBoard () {
+    this.props.socket.emit("leave", "XXX Player has left");
+  }
 
   render() {
     return (
@@ -43,7 +55,7 @@ class Sidebar extends Component {
               <FontAwesome className="sidebar-icon-left" name='circle'/>
               Join Circle
             </li>
-            <li>
+            <li onClick = {this.leaveBoard}>
               <FontAwesome className="sidebar-icon-left" name='circle-o'/>
               Leave Circle
             </li>

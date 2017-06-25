@@ -4,17 +4,40 @@ const taskConstructor = require('../managers/task-manager/task-constructor.js');
 const gameManager = require('../managers/game-manager/game-manager.js');
 const mongoose = require('../db/mongoose.js');
 
+function taskHandler (handlerFunction, handlerFunctionArgs, taskName, taskHandlerCb) {
+  handlerFunction.apply(null, handlerFunctionArgs)
+  /* taskFinalValue = [board, player] */
+  .then (taskFinalValue => {taskHandlerCb.apply(null, taskFinalValue)})
+  .catch (e => console.log(`Action ${taskName} failed: ${e}`))
+}
 
 function taskSwitcher (task) {
-  taskObject = JSON.parse(task[1]);
-  taskType = taskConstructor.getTaskProperty(taskObject, 'type')
+  let taskObject = JSON.parse(task[1]);
+  let taskType = taskConstructor.getTaskProperty(taskObject, 'type');
+  let userId = taskConstructor.getTaskProperty(taskObject, 'userId');
+  /*
+     Default callback after performing task sucessfully.
+     Do nothing by default !
+   */
+  let taskHandlerCb;
   switch (taskType) {
+    case taskConstructor.CONNECT :
+     //console.log(taskConstructor.CONNECT)
+      taskHandlerCb = ( _ => null );
+      taskHandler(gameManager.handleConnectAction, [userId], taskConstructor.CONNECT, taskHandlerCb);
+      break;
     case taskConstructor.JOIN :
-      taskUserId = taskConstructor.getTaskProperty(taskObject, 'userId')
-      gameManager.handleJoinAction(taskUserId)
-      .then (_ => console.log("Action JOIN successfully performed !"))
-      .catch (e => console.log(`Action JOIN failed: ${e}`))
-      io.to(taskUserId.replace(/['"]+/g, '')).emit('test', 'TOMAaaaaaaaa');
+      taskHandlerCb = (board, user) => io.to(user.socketId).emit("join:channel:request", board._id.toString());
+      taskHandler(gameManager.handleJoinAction, [userId], taskConstructor.JOIN, taskHandlerCb);
+      //io.to(userId.replace(/['"]+/g, '')).emit('test', 'TOMAaaaaaaaa');
+      break;
+    case taskConstructor.LEAVE :
+     taskHandlerCb = (board, user) => io.to(board._id.toString()).emit('leave:channel', "User XXX has left the room");
+     taskHandler(gameManager.handleLeaveAction, [userId], taskConstructor.LEAVE, taskHandlerCb);
+      break;
+    case taskConstructor.DISCONNECT :
+      taskHandlerCb = ( _ => null );
+      taskHandler(gameManager.handleDisconnectAction, [userId], taskConstructor.DISCONNECT, taskHandlerCb);
       break;
     default:
   }
