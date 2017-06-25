@@ -32,7 +32,7 @@ function taskSwitcher (task) {
       //io.to(userId.replace(/['"]+/g, '')).emit('test', 'TOMAaaaaaaaa');
       break;
     case taskConstructor.LEAVE :
-     taskHandlerCb = (board, user) => io.to(board._id.toString()).emit('leave:channel', "User XXX has left the room");
+     taskHandlerCb = (board, user) => io.to(board._id.toString()).emit('leave:room', "User XXX has left the room");
      taskHandler(gameManager.handleLeaveAction, [userId], taskConstructor.LEAVE, taskHandlerCb);
       break;
     case taskConstructor.DISCONNECT :

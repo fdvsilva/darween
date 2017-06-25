@@ -16,14 +16,14 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    this.props.socket.on('join:channel:request', (channel => {
+    this.props.socket.on('join:channel:request', (room => {
       console.log("join:channel:request");
       console.log(channel);
-      this.props.socket.emit("join:channel", channel);
+      this.props.socket.emit("join:room", room);
     }));
 
-    this.props.socket.on('leave:channel', (channel => {
-      console.log("LEFT CHANNEL");
+    this.props.socket.on('leave:room', (room => {
+      console.log("LEFT ROOM");
     }));
 
     this.props.socket.on('test', (message => {

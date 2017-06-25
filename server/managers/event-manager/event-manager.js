@@ -12,9 +12,9 @@ const eventManager = (io) => {
       taskManager.enqueueTask(taskConstructor.createJoinTask(socket.id), 0);
     });
 
-    socket.on("join:channel", (channel) => {
-      console.log(`User ${socket.id} joined room ${channel}`)
-      socket.join(channel);
+    socket.on("join:channel", (room) => {
+      console.log(`User ${socket.id} joined room ${room}`)
+      socket.join(room);
     });
 
     socket.on("leave", (message) => {
