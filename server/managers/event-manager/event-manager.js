@@ -12,7 +12,7 @@ const eventManager = (io) => {
       taskManager.enqueueTask(taskConstructor.createJoinTask(socket.id), 0);
     });
 
-    socket.on("join:channel", (room) => {
+    socket.on("join:room", (room) => {
       console.log(`User ${socket.id} joined room ${room}`)
       socket.join(room);
     });

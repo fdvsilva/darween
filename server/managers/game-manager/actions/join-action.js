@@ -22,7 +22,7 @@ const handleJoinActionWrapper = (MAX_PLAYERS_NUMBER) => {
     .then(_ => Board.find().sort({$natural:-1}).limit(1))
     .then((docs) => {
       if (docs.length === 0 || docs[0].players.length === MAX_PLAYERS_NUMBER) {
-        board = new Board({});
+        board = new Board();
         return board.save();
       }
       return docs[0];
@@ -45,6 +45,7 @@ const handleJoinActionWrapper = (MAX_PLAYERS_NUMBER) => {
       var currentBoard = result[0];
       var newPlayer = result[1];
       currentBoard.players.push(newPlayer._id);
+      if (currentBoard.players.length >= MAX_PLAYERS_NUMBER) currentBoard.isBoardFull = true;
       return Promise.all([currentBoard.save(), newPlayer]);
     })
 

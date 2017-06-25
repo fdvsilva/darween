@@ -18,7 +18,6 @@ class Sidebar extends Component {
   componentDidMount() {
     this.props.socket.on('join:channel:request', (room => {
       console.log("join:channel:request");
-      console.log(channel);
       this.props.socket.emit("join:room", room);
     }));
 
@@ -26,8 +25,16 @@ class Sidebar extends Component {
       console.log("LEFT ROOM");
     }));
 
-    this.props.socket.on('test', (message => {
-      console.log("TEST: " + message);
+    this.props.socket.on('timer:topic:finished', (message => {
+      console.log("TOPIC: " + message);
+    }));
+
+    this.props.socket.on('timer:pov:finished', (message => {
+      console.log("POV: " + message);
+    }));
+
+    this.props.socket.on('timer:reading:finished', (message => {
+      console.log("READING: " + message);
     }));
 
   }

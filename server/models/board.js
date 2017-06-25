@@ -9,14 +9,15 @@ var Schema = mongoose.Schema;
 
 /* Internal imports */
 const Player = require('./player.js');
+const gameSteps = require('../managers/game-manager/steps/game-steps.js');
 
 /* Internal constants */
 const boardCyclicStages = [
-                     'WAITING_FOR_TOPIC',
-                     'WAITING_FOR_POINT_OF_VIEWS',
-                     'WAITING_FOR_READING_POINT_OF_VIEWS'
+                     gameSteps.WAITING_FOR_TOPIC,
+                     gameSteps.WAITING_FOR_POINT_OF_VIEWS,
+                     gameSteps.WAITING_FOR_READING_POINT_OF_VIEWS
                     ];
-const boardInitialStage = 'WAITING_FOR_PLAYERS'
+const boardInitialStage = gameSteps.WAITING_FOR_PLAYERS
 
 
 //______ Module Body
@@ -30,6 +31,10 @@ var BoardSchema = new Schema({
   },
   currentStageTimer : {
     type: Schema.Types.Mixed,
+  },
+  isBoardFull : {
+    type: Boolean,
+    default: false
   },
   players : {
     type: [{
