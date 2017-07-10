@@ -5,16 +5,20 @@ const gameManager = require('../managers/game-manager/game-manager.js');
 const gameSteps = require('../managers/game-manager/steps/game-steps.js');
 const mongoose = require('../db/mongoose.js');
 
-function taskHandler (handlerFunction, handlerFunctionArgs, taskName, taskHandlerCb) {
+function taskHandler (handlerFunction, handlerFunctionArgs, task, taskName, taskHandlerCb) {
   handlerFunction.apply(null, handlerFunctionArgs)
   /* taskFinalValue = [board, player] */
   .then (taskFinalValue => {taskHandlerCb.apply(null, taskFinalValue)})
+  .then (_ =>  taskManager.markTaskAsCompleted(task, (new Date().getTime())))
+  //.then (res => console.log(res))
   .catch (e => console.log(`Action ${taskName} failed: ${e}`))
 }
 
 
 function taskSwitcher (task) {
-  let taskObject = JSON.parse(task[1]);
+  console.log(task);
+  let taskObject = JSON.parse(task.split('#')[1]);
+  console.log(taskObject);
   let taskType = taskConstructor.getTaskProperty(taskObject, 'type');
   let userId = taskConstructor.getTaskProperty(taskObject, 'userId');
   let boardId = taskConstructor.getTaskProperty(taskObject, 'boardId');
@@ -25,9 +29,10 @@ function taskSwitcher (task) {
   let taskHandlerCb;
   switch (taskType) {
     case taskConstructor.CONNECT :
-     //console.log(taskConstructor.CONNECT)
+     console.log(taskConstructor.CONNECT);
+
       taskHandlerCb = ( _ => null ); // Do Nothing
-      taskHandler(gameManager.handleConnectAction, [userId], taskConstructor.CONNECT, taskHandlerCb);
+      taskHandler(gameManager.handleConnectAction, [userId], task, taskConstructor.CONNECT, taskHandlerCb);
       break;
     case taskConstructor.JOIN :
       taskHandlerCb = (board, user) => {
@@ -38,11 +43,11 @@ function taskSwitcher (task) {
         }
         io.to(user.socketId).emit("join:channel:request", board._id.toString());
       }
-      taskHandler(gameManager.handleJoinAction, [userId], taskConstructor.JOIN, taskHandlerCb);
+      taskHandler(gameManager.handleJoinAction, [userId], task, taskConstructor.JOIN, taskHandlerCb);
       break;
     case taskConstructor.LEAVE :
      taskHandlerCb = (board, user) => io.to(board._id.toString()).emit('leave:room', "User XXX has left the room");
-     taskHandler(gameManager.handleLeaveAction, [userId], taskConstructor.LEAVE, taskHandlerCb);
+     taskHandler(gameManager.handleLeaveAction, [userId], task, taskConstructor.LEAVE, taskHandlerCb);
      break;
     case taskConstructor.TIMER :
       let nextStep = gameSteps.nextStep(step);
@@ -55,7 +60,7 @@ function taskSwitcher (task) {
       break;
     case taskConstructor.DISCONNECT :
       taskHandlerCb = ( _ => null ); // Do Nothing
-      taskHandler(gameManager.handleDisconnectAction, [userId], taskConstructor.DISCONNECT, taskHandlerCb);
+      taskHandler(gameManager.handleDisconnectAction, [userId], task, taskConstructor.DISCONNECT, taskHandlerCb);
       break;
     default:
   }
@@ -63,16 +68,15 @@ function taskSwitcher (task) {
 
 /* Move tasks to a QUEUE to be executed */
 function taskProcessor () {
-  //taskManager.dequeueTask.bind(taskManager)
-  //console.log(taskManager.dequeueTask);
   taskManager.dequeueTask()
   .then (task => {
-    //if (task) console.log("TASK: " + task.split(",")[1]);
-    if (task) taskSwitcher(task);
+    //if (task) console.log("TASK: " + task);
+    if (task) taskSwitcher(`${(new Date().getTime())}#${task}`);
     setTimeout(taskProcessor, 0)
   })
   //console.log('NOT BLOCKED')
 };
+
 
 taskProcessor();
 
