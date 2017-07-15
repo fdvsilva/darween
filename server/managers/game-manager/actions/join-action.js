@@ -8,24 +8,24 @@ const handleJoinActionWrapper = (MAX_PLAYERS_NUMBER) => {
 
     /* Checks if player is already in a board, if so, then aborts all
     the next promises in order to prevent the user from joining
-    two board at the same timeout
+    two board at the same time
     */
     var checkIfPlayerIsAlreadyInABoardPromise = Player.findOne({socketId})
     .then (player => {
       if (player && player.boardId) {throw new AlreadyInABoard()}
     })
 
-
-    /* Returns current board if it is not full
-    or returns a new one, otherwise */
+    /* Returns the current board if it is not full
+       otherwise returns a new one
+     */
     var currentBoardPromise = checkIfPlayerIsAlreadyInABoardPromise
     .then(_ => Board.find().sort({$natural:-1}).limit(1))
-    .then((docs) => {
-      if (docs.length === 0 || docs[0].players.length === MAX_PLAYERS_NUMBER) {
+    .then((boards) => {
+      if (boards.length === 0 || boards[0].numberPlayers === MAX_PLAYERS_NUMBER) {
         board = new Board();
         return board.save();
       }
-      return docs[0];
+      return boards[0];
     })
 
     /* Updates player with the board it was assigned to ot
@@ -44,10 +44,23 @@ const handleJoinActionWrapper = (MAX_PLAYERS_NUMBER) => {
     .then(result => {
       var currentBoard = result[0];
       var newPlayer = result[1];
-      currentBoard.players.push(newPlayer._id);
-      if (currentBoard.players.length >= MAX_PLAYERS_NUMBER) currentBoard.isBoardFull = true;
-      return Promise.all([currentBoard.save(), newPlayer]);
+      newPlayer.name = currentBoard.nextPlayerName();
+      currentBoard.players[newPlayer.name] = newPlayer._id;
+      /* Update the number of player */
+      currentBoard.playersNumber++;
+      if (currentBoard.playersNumber >= MAX_PLAYERS_NUMBER) {
+        currentBoard.isBoardFull = true;
+        /* Sets the start time to the first step of the game.
+           This time is then compared with the user's response
+           time in order ensure the response came within the
+           next X seconds where X is
+           currentBoard.stepInfo.currentStepDuration
+          */
+        currentBoard.stepInfo.stepsStartTime[currentBoard.stepInfo.currentStep] = new Date().getTime();
+      }
+      return Promise.all([currentBoard.save(), newPlayer.save()])
     })
+
 
 
   }

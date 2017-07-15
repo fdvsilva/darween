@@ -6,6 +6,9 @@ const CONNECT = 'CONNECT';
 const JOIN = 'JOIN';
 const LEAVE = 'LEAVE';
 const DISCONNECT = 'DISCONNECT';
+const ADD_POV = 'ADD_POV';
+const ADD_TOPIC = 'ADD_TOPIC';
+const DOWNVOTE = 'DOWNVOTE';
 
 function createConnectTask(userId) {
   return {type: CONNECT, userId};
@@ -35,6 +38,18 @@ function createPOVTimerTask(boardId) {
   return {type: TIMER_FOR_POV, boardId};
 }
 
+function createAddPOVTask(userId, pov, timeStamp) {
+  return {type: ADD_POV, userId, pov, timeStamp};
+}
+
+function createAddTopicTask(userId, topic, timeStamp) {
+  return {type: ADD_TOPIC, userId, topic, timeStamp};
+}
+
+function createDownvoteTask(userId, playerDownvoted) {
+  return {type: DOWNVOTE, userId, playerDownvoted: playerDownvoted.toLowerCase()};
+}
+
 function createReadingTimerTask(boardId) {
   return {type: TIMER_FOR_READING, boardId};
 }
@@ -52,7 +67,10 @@ module.exports = {
   createTimerTask,
   createTopicTimerTask,
   createPOVTimerTask,
+  createAddPOVTask,
+  createAddTopicTask,
   createReadingTimerTask,
+  createDownvoteTask,
   TIMER,
   TIMER_FOR_TOPIC,
   TIMER_FOR_POV,
@@ -60,5 +78,8 @@ module.exports = {
   CONNECT,
   JOIN,
   LEAVE,
-  DISCONNECT
+  DISCONNECT,
+  ADD_POV,
+  ADD_TOPIC,
+  DOWNVOTE
 }

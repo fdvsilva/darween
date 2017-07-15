@@ -11,7 +11,8 @@ var PlayerSchema = mongoose.Schema({
     ref: 'Board'
   },
   name : {
-    type: String
+    type: String,
+    default: ""
   }
 })
 
